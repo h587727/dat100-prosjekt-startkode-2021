@@ -1,7 +1,6 @@
 package no.hvl.dat100.prosjekt.modell;
 
 import no.hvl.dat100.prosjekt.TODO;
-
 import no.hvl.dat100.prosjekt.kontroll.dommer.Regler;
 
 /**
@@ -60,14 +59,14 @@ public class KortSamling {
 	 */
 	public boolean erTom() {
 		
-		return antall == 0;
+		// return antall == 0;
 		
-		/* if (antall == 0) {
+		if (antall == 0) {
 			return true;
 			
 		}
 		return false;
-		*/
+		
 	}
 
 	/**
@@ -91,13 +90,6 @@ public class KortSamling {
 		// Husk: bruk Regler.MAKS_KORT_FARGE for å få antall kort per farge
 		
 		
-		/**
-		    for (Kortfarge f: Kortfarge.values()) {
-			for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
-				samling[i-1] = new Kort(f, i);
-				antall++ 
-				
-				*/
 		
 		for (Kortfarge f : Kortfarge.values()) {
 			for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
@@ -170,11 +162,10 @@ public class KortSamling {
 		}	
 		return false; */
 		
-		for (Kort referanse : samling) 
-			if (referanse != null && referanse.equals(kort)) {
-				return true;
-			}
-		return false;
+		for (int i = 0; i < antall; i++) {
+            if (samling[i].equals(kort)) return true;
+        }
+        return false;
 	}
 
 	/**
@@ -189,14 +180,22 @@ public class KortSamling {
 			 
 	public boolean fjern(Kort kort) {
 		
-		for (int i = 0; i < samling.length; i++) {
+		/* for (int i = 0; i < samling.length; i++) {
 			if (samling[i] == kort && kort != null) {
 				samling[i] = null;
 				antall--;
 				return true;
 			}
 		}
-		return false;
+		return false; */
+		
+		for (int i = 0; i < antall; i++) {
+            if (samling[i].equals(kort)) {
+                samling[i] = samling[--antall];
+                return true;
+            }
+        }
+        return false;
 	}
 
 	/**
