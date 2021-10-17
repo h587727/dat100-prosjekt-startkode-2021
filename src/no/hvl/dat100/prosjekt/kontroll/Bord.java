@@ -138,7 +138,7 @@ public class Bord {
 	 */
 	public void snuTilBunken() {
 
-		Kort overst;
+		Kort overst; 
 		
 		if (bunkeFra.erTom()) {
 			overst = bunkeTil.taSiste();
