@@ -147,7 +147,7 @@ public class Bord {
 				bunkeFra.leggTil(bunkeTil.taSiste());
 				
 			}
-			bunkeTil.leggTil(overst);
+			bunkeTil.leggTil(overst);  
 		}
 		
 	}

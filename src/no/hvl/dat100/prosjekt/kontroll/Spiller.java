@@ -32,7 +32,7 @@ public abstract class Spiller implements ISpiller {
 	 * antalltrekk som 0 og setter spiller til Spillere.INGEN.
 	 */
 	public Spiller() {
-		
+		 
 		antalltrekk = 0;
 		hand = new KortSamling();
 		spiller = Spillere.INGEN;
