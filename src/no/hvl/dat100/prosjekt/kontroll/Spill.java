@@ -191,7 +191,7 @@ public class Spill {
 				// om noen andre private metoder i klassen kan brukes
 				// til å implementere denne metoden
 	
-		Kort kort = null;
+	/*	Kort kort = null;
 		
 		if(handling.getType() == HandlingsType.LEGGNED) {
 			kort = handling.getKort();
@@ -206,6 +206,21 @@ public class Spill {
 			spiller.trekker(kort);
 		}
 		return kort;
-	}
+	} */
+		
+		Kort kort = null;
 
+        switch (handling.getType()) {
+            case LEGGNED:
+                kort = handling.getKort();
+                spiller.fjernKort(kort);
+                bord.leggNedBunkeTil(kort);
+                break;
+            case TREKK:
+                kort = trekkFraBunke(spiller);
+                break;
+        }
+
+        return kort;
+	}
 }

@@ -1,11 +1,14 @@
 package no.hvl.dat100.prosjekt.kontroll;
 
+import java.util.Random;
+
 import no.hvl.dat100.prosjekt.TODO;
 import no.hvl.dat100.prosjekt.kontroll.dommer.Regler;
 import no.hvl.dat100.prosjekt.kontroll.spill.Handling;
 import no.hvl.dat100.prosjekt.kontroll.spill.HandlingsType;
 import no.hvl.dat100.prosjekt.kontroll.spill.Spillere;
 import no.hvl.dat100.prosjekt.modell.Kort;
+import no.hvl.dat100.prosjekt.modell.KortSamling;
 
 /**
  * Klasse som for å representere en vriåtter syd-spiller. Strategien er å lete
@@ -36,12 +39,31 @@ public class SydSpiller extends Spiller {
 	 */
 	@Override
 	public Handling nesteHandling(Kort topp) {
+		
+	
+		
+        /* first-fit strategi */
+        Handling handling = null;
+        Kort[] hand = getHand().getAllekort();
+        KortSamling lovlige = new KortSamling();
+        KortSamling attere = new KortSamling();
 
-		// TODO - START
-		/* first-fit strategi */
-	
-		throw new UnsupportedOperationException(TODO.method());
-	
-		// TODO - END
+        // Gå igjennom kort å finn ut hvilke som kan spilles
+        for (Kort k : hand) {
+            if (Regler.kanLeggeNed(k, topp)) {
+                return new Handling(HandlingsType.LEGGNED, k);
+            }
+        }
+
+        if(handling == null) {
+            if (getAntallTrekk() < Regler.maksTrekk()) {
+                return new Handling(HandlingsType.TREKK, null);
+            } else {
+                return  new Handling(HandlingsType.FORBI, null);
+            }
+        }
+       return handling;
 	}
 }
+	
+
